@@ -24,3 +24,40 @@
 #
 #Delete these comments before commit!
 #Good luck.
+import logging
+
+from models.environment import Environment
+
+if __name__ == "__main__":
+    environment = Environment()
+
+    while True:
+        print(
+            "What would you want to do?\n"
+            "1. Create new bank\n"
+            "2. Pick an existing bank"
+        )
+        value = input()
+
+        if value == "1":
+            environment.create_bank()
+            print("created")
+
+        if value == "2":
+            index = 0
+            for bank in environment.banks:
+                print("{}. ".format(index))
+                index += 1
+
+            print("Pick a bank:")
+            bank_index = input()
+
+            if 0 <= int(bank_index) < len(environment.banks):
+                index = 0
+                for client in environment.banks[index].clients:
+                    print("{}. ".format(index))
+                    index += 1
+
+                print("Pick a client:")
+                client_index = input()
+
